@@ -1,0 +1,688 @@
+{
+  "phase": "practice",
+  "n": 13,
+  "users": null,
+  "turns": null,
+  "config_used": {
+    "provider": "openai",
+    "model": "gpt-5.5",
+    "model_price_tier": "premium",
+    "max_steps": 4,
+    "loop_guard": true,
+    "temperature": 0.0,
+    "context_size": 2,
+    "verbose_system": false,
+    "retry": {
+      "enabled": true,
+      "max_attempts": 2,
+      "backoff_ms": 250
+    },
+    "cache": {
+      "enabled": true
+    },
+    "normalize_unicode": true,
+    "redact_pii": true,
+    "session_drift_rate": 0.0,
+    "context_reset_every": 6,
+    "tool_error_rate": 0.0,
+    "catalog_override": {
+      "macbook": {
+        "in_stock": true
+      }
+    }
+  },
+  "results": [
+    {
+      "qid": "pub-01",
+      "question": "Mua 2 iPhone dung ma WINNER, ship Ha Noi - tong cong bao nhieu VND?",
+      "answer": "Tong cong: 39630000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-01",
+      "turn": 0,
+      "latency_ms": 8976,
+      "usage": {
+        "prompt_tokens": 1107,
+        "completion_tokens": 289,
+        "total_tokens": 1396
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.107783Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'WINNER'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "WINNER",
+            "valid": true,
+            "percent": 10
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Ha Noi', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "ha noi",
+            "weight_kg": 1.0,
+            "cost_vnd": 30000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-02",
+      "question": "Mua 1 MacBook ship TP HCM het bao nhieu?",
+      "answer": "Tong cong: 35028000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-02",
+      "turn": 0,
+      "latency_ms": 6207,
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 140,
+        "total_tokens": 1123
+      },
+      "tools_used": [
+        "check_stock",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.109828Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'MacBook'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "macbook",
+            "found": true,
+            "in_stock": true,
+            "quantity": 4,
+            "unit_price_vnd": 35000000,
+            "weight_kg": 1.6
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'TP HCM', 'weight_kg': 1.6})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "tp hcm",
+            "weight_kg": 1.6,
+            "cost_vnd": 28000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-03",
+      "question": "Con iPad khong, gia bao nhieu?",
+      "answer": "ipad con hang. Gia: 18000000 VND",
+      "status": "ok",
+      "steps": 1,
+      "session": "pub-03",
+      "turn": 0,
+      "latency_ms": 8410,
+      "usage": {
+        "prompt_tokens": 578,
+        "completion_tokens": 87,
+        "total_tokens": 665
+      },
+      "tools_used": [
+        "check_stock"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.458658Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPad'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "ipad",
+            "found": true,
+            "in_stock": true,
+            "quantity": 7,
+            "unit_price_vnd": 18000000,
+            "weight_kg": 0.45
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-04",
+      "question": "Mua 3 iPhone dung ma VIP20 ship Da Nang tong bao nhieu?",
+      "answer": "Tong cong: 52837500 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-04",
+      "turn": 0,
+      "latency_ms": 11363,
+      "usage": {
+        "prompt_tokens": 1094,
+        "completion_tokens": 332,
+        "total_tokens": 1426
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.529604Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'VIP20'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "VIP20",
+            "valid": true,
+            "percent": 20
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Da Nang', 'weight_kg': 1.5})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "da nang",
+            "weight_kg": 1.5,
+            "cost_vnd": 37500
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-05",
+      "question": "Mua 1 AirPods ship Ha Noi?",
+      "answer": "airpods hien het hang nen khong the dat mua. (no total)",
+      "status": "ok",
+      "steps": 1,
+      "session": "pub-05",
+      "turn": 0,
+      "latency_ms": 5329,
+      "usage": {
+        "prompt_tokens": 577,
+        "completion_tokens": 112,
+        "total_tokens": 689
+      },
+      "tools_used": [
+        "check_stock"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.621508Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'AirPods'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "airpods",
+            "found": true,
+            "in_stock": false,
+            "quantity": 0,
+            "unit_price_vnd": 4500000,
+            "weight_kg": 0.1
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-06",
+      "question": "Mua 2 iPhone dung ma EXPIRED ship Ha Noi tong bao nhieu?",
+      "answer": "Tong cong: 44030000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-06",
+      "turn": 0,
+      "latency_ms": 14665,
+      "usage": {
+        "prompt_tokens": 1092,
+        "completion_tokens": 292,
+        "total_tokens": 1384
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.664558Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'EXPIRED'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "EXPIRED",
+            "valid": false,
+            "percent": 0
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Ha Noi', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "ha noi",
+            "weight_kg": 1.0,
+            "cost_vnd": 30000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-07",
+      "question": "Mua 1 Samsung ship Ha Noi?",
+      "answer": "Khong tim thay san pham nen khong the dat mua. (no total)",
+      "status": "ok",
+      "steps": 1,
+      "session": "pub-07",
+      "turn": 0,
+      "latency_ms": 6711,
+      "usage": {
+        "prompt_tokens": 548,
+        "completion_tokens": 118,
+        "total_tokens": 666
+      },
+      "tools_used": [
+        "check_stock"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.831504Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'Samsung'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "Samsung",
+            "found": false,
+            "error": "item_not_found"
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-08",
+      "question": "Mua 2 iPhone ship Da Lat?",
+      "answer": "Dia diem giao hang khong duoc ho tro nen khong the tinh tong. (no total)",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-08",
+      "turn": 0,
+      "latency_ms": 8265,
+      "usage": {
+        "prompt_tokens": 959,
+        "completion_tokens": 196,
+        "total_tokens": 1155
+      },
+      "tools_used": [
+        "check_stock",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.866777Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Da Lat', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "Da Lat",
+            "error": "destination_not_served",
+            "cost_vnd": null
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-09",
+      "question": "Mua 2 iPhone dung ma WINNER ship TP HCM tong bao nhieu?",
+      "answer": "Tong cong: 39625000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-09",
+      "turn": 0,
+      "latency_ms": 8734,
+      "usage": {
+        "prompt_tokens": 1097,
+        "completion_tokens": 304,
+        "total_tokens": 1401
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:00.893316Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'WINNER'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "WINNER",
+            "valid": true,
+            "percent": 10
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'TP HCM', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "tp hcm",
+            "weight_kg": 1.0,
+            "cost_vnd": 25000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-10",
+      "question": "Mua 1 MacBook dung ma SALE15 ship Hai Phong tong bao nhieu?",
+      "answer": "Tong cong: 29781000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-10",
+      "turn": 0,
+      "latency_ms": 12058,
+      "usage": {
+        "prompt_tokens": 1100,
+        "completion_tokens": 248,
+        "total_tokens": 1348
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:01.006772Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'MacBook'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "macbook",
+            "found": true,
+            "in_stock": true,
+            "quantity": 4,
+            "unit_price_vnd": 35000000,
+            "weight_kg": 1.6
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'SALE15'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "SALE15",
+            "valid": true,
+            "percent": 15
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Hai Phong', 'weight_kg': 1.6})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "hai phong",
+            "weight_kg": 1.6,
+            "cost_vnd": 31000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-11",
+      "question": "Mua 2 iPhone dung ma WINNER ship Hà Nội tong cong bao nhieu VND?",
+      "answer": "Tong cong: 39630000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-11",
+      "turn": 0,
+      "latency_ms": 8668,
+      "usage": {
+        "prompt_tokens": 1102,
+        "completion_tokens": 286,
+        "total_tokens": 1388
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:01.171915Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'WINNER'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "WINNER",
+            "valid": true,
+            "percent": 10
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Hà Nội', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "ha noi",
+            "weight_kg": 1.0,
+            "cost_vnd": 30000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-12",
+      "question": "Mua 2 iPhone dung ma WINNER, ship Ha Noi - tong cong bao nhieu VND?",
+      "answer": "Tong cong: 39630000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-12",
+      "turn": 0,
+      "latency_ms": 7847,
+      "usage": {
+        "prompt_tokens": 1107,
+        "completion_tokens": 276,
+        "total_tokens": 1383
+      },
+      "tools_used": [
+        "check_stock",
+        "get_discount",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:01.210231Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 1,
+          "action": "get_discount({'coupon_code': 'WINNER'})",
+          "tool": "get_discount",
+          "observation": {
+            "code": "WINNER",
+            "valid": true,
+            "percent": 10
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Ha Noi', 'weight_kg': 1})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "ha noi",
+            "weight_kg": 1.0,
+            "cost_vnd": 30000
+          }
+        }
+      ]
+    },
+    {
+      "qid": "pub-13",
+      "question": "Mua 1 iPhone ship Ha Noi, lien he toi qua email an.nguyen@gmail.com nhe",
+      "answer": "Tong cong: 22030000 VND",
+      "status": "ok",
+      "steps": 2,
+      "session": "pub-13",
+      "turn": 0,
+      "latency_ms": 8433,
+      "usage": {
+        "prompt_tokens": 1000,
+        "completion_tokens": 233,
+        "total_tokens": 1233
+      },
+      "tools_used": [
+        "check_stock",
+        "calc_shipping"
+      ],
+      "model": "gpt-5.5",
+      "provider": "openai",
+      "ts": "2026-06-13T00:00:01.371369Z",
+      "trace": [
+        {
+          "step": 1,
+          "action": "check_stock({'item_name': 'iPhone'})",
+          "tool": "check_stock",
+          "observation": {
+            "item": "iphone",
+            "found": true,
+            "in_stock": true,
+            "quantity": 12,
+            "unit_price_vnd": 22000000,
+            "weight_kg": 0.5
+          }
+        },
+        {
+          "step": 2,
+          "action": "calc_shipping({'destination': 'Ha Noi', 'weight_kg': 0.5})",
+          "tool": "calc_shipping",
+          "observation": {
+            "destination": "ha noi",
+            "weight_kg": 0.5,
+            "cost_vnd": 30000
+          }
+        }
+      ]
+    }
+  ]
+}

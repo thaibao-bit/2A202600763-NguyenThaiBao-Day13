@@ -1,0 +1,21 @@
+{
+  "team": "NguyenThaiBao",
+  "phase": "public",
+  "headline": 35.73,
+  "sub": {
+    "correct": 0.0,
+    "quality": 0.0,
+    "error": 0.0,
+    "latency": 1.0,
+    "cost": 1.0,
+    "drift": 1.0,
+    "prompt": 0.0
+  },
+  "diag_f1": 0.533,
+  "n": 0,
+  "n_correct": 0,
+  "judge_mode": "offline",
+  "weights_hash": "e81a8ed58d93",
+  "key_hash": "9a800fa6968d",
+  "sig": "6340b2f7fce518a361d0f369affcbdfc82e26f5f725009a99d373e4973450452"
+}
