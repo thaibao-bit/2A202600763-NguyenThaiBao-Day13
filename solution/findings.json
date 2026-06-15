@@ -1,12 +1,56 @@
 {
-  "team": "TODO-team-name",
+  "team": "NguyenThaiBao",
   "schema_version": 1,
   "findings": [
     {
       "fault_class": "latency_spike",
-      "evidence": {"metric": "latency_p95_ms", "observed": "TODO from your telemetry", "trace_ids": []},
-      "root_cause": "TODO: what config knob or behavior causes it?",
-      "suggested_fix": "TODO: config change and/or wrapper mitigation"
+      "evidence": {
+        "metric": "config_and_wrapper_review",
+        "observed": "Original config allowed max_steps=12, no loop guard, no retry, no cache, verbose_system=true, max_completion_tokens=2000.",
+        "trace_ids": []
+      },
+      "root_cause": "The shipped configuration lets the prompt-driven agent over-call tools and produce long completions, so slow requests can dominate tail latency.",
+      "suggested_fix": "Enable loop_guard, cache repeated sanitized questions, cap max_steps/tool_budget/completion tokens, and log latency per request in wrapper.py."
+    },
+    {
+      "fault_class": "cost_blowup",
+      "evidence": {
+        "metric": "token_and_tool_budget",
+        "observed": "Original config used verbose_system=true, context_size=8, max_completion_tokens=2000, tool_budget=0, cache disabled.",
+        "trace_ids": []
+      },
+      "root_cause": "Large context and unlimited tool use waste prompt/output tokens even for simple order-total questions.",
+      "suggested_fix": "Use concise prompt, smaller context, max_completion_tokens=500, tool_budget=4, and cache exact repeated orders."
+    },
+    {
+      "fault_class": "tool_failure",
+      "evidence": {
+        "metric": "config_review",
+        "observed": "Original config had normalize_unicode=false, tool_error_rate=0.18, and catalog_override marking macbook out of stock.",
+        "trace_ids": []
+      },
+      "root_cause": "Injected tool unreliability and disabled Unicode normalization can make answerable products or cities fail.",
+      "suggested_fix": "Set tool_error_rate=0, enable retry and normalize_unicode, and remove the catalog override."
+    },
+    {
+      "fault_class": "pii_leak",
+      "evidence": {
+        "metric": "public_question_review",
+        "observed": "Public questions include customer email text; original prompt and config had no PII protection and redact_pii=false.",
+        "trace_ids": []
+      },
+      "root_cause": "The agent may echo user contact details in a friendly answer unless the prompt and wrapper forbid it.",
+      "suggested_fix": "Prompt instructs not to repeat PII; config enables redact_pii; wrapper redacts answer text before returning and logs redaction counts."
+    },
+    {
+      "fault_class": "prompt_injection",
+      "evidence": {
+        "metric": "private_phase_risk",
+        "observed": "Rules state private orders include fake system prices/instructions in order notes; original prompt had no instruction hierarchy.",
+        "trace_ids": []
+      },
+      "root_cause": "The model can treat customer notes as instructions and use fake prices instead of tool-grounded prices.",
+      "suggested_fix": "Prompt treats notes as data only and requires prices from check_stock; wrapper strips obvious note/instruction suffixes before calling the agent."
     }
   ]
 }
